@@ -20,6 +20,11 @@ import com.example.educationapplication.QuizModel;
 import com.example.educationapplication.QuestionModel;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 public class CreateQuestionUpload extends AppCompatActivity {
 
     DatabaseReference databaseRef;
@@ -58,14 +63,44 @@ public class CreateQuestionUpload extends AppCompatActivity {
             }
         });
 
+        String a = "";
+        String b = "";
+        String c = "";
+        String d = "";
+        String e = "";
+
+        //Database
+
+        //Question
+        QuestionModel questionModel = new QuestionModel(
+                a, Arrays.asList(b,c,d,e),e
+        );
+
+        QuestionModel newquestionModel = new QuestionModel(
+                a, Arrays.asList(b,c,d,e),e
+        );
+
+        //Add to list of question
+        List<QuestionModel> questionList = new ArrayList<>();
+        questionList.add(questionModel); // Add existing question
+        questionList.add(newquestionModel); // Add new question
+
+        QuizModel quz = new QuizModel(
+                a,
+                b,
+                c,
+                d,
+                questionList
+        );
+
         uploadbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Get number
-                databaseRef = FirebaseDatabase.getInstance().getReference("5").child("id");
+                databaseRef = FirebaseDatabase.getInstance().getReference("5");
                 //get id
                 databaseRef.child("id");
-                databaseRef.setValue("5");
+                databaseRef.setValue(quz);
             }
         });
     }
