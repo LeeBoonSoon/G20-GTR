@@ -63,6 +63,8 @@ public class CreateQuestionUpload extends AppCompatActivity {
             }
         });
 
+
+        //*****************************************
         String a = "";
         String b = "";
         String c = "";
