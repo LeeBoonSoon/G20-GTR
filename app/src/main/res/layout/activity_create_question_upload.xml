@@ -43,7 +43,7 @@
                 android:paddingVertical="12dp"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
-                android:id="@+id/add_btn0" />
+                android:id="@+id/add_text1" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 android:paddingVertical="12dp"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
-                android:id="@+id/add_btn1" />
+                android:id="@+id/add_text2" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -67,7 +67,8 @@
                 android:paddingVertical="12dp"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
-                android:id="@+id/add_btn2" />
+                android:id="@+id/add_text3" />
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,7 +79,13 @@
                 android:paddingVertical="12dp"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
-                android:id="@+id/add_btn3" />
+                android:id="@+id/add_text4" />
+
+            <Spinner
+                android:id="@+id/addspinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Upload"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
