@@ -43,7 +43,7 @@
                 android:paddingVertical="12dp"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
-                android:id="@+id/add_text1" />
+                android:id="@+id/add_answerA" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 android:paddingVertical="12dp"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
-                android:id="@+id/add_text2" />
+                android:id="@+id/add_answerB" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 android:paddingVertical="12dp"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
-                android:id="@+id/add_text3" />
+                android:id="@+id/add_answerC" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                 android:paddingVertical="12dp"
                 android:gravity="center_vertical"
                 android:textSize="18sp"
-                android:id="@+id/add_text4" />
+                android:id="@+id/add_answerD" />
 
             <Spinner
                 android:id="@+id/addspinner"

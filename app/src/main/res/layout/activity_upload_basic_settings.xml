@@ -14,8 +14,7 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="TextView" />
+            android:layout_height="30dp" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/add_question_textview"
@@ -42,14 +41,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="ID" />
+            android:text="Title" />
 
         <EditText
-            android:id="@+id/edit_name"
+            android:id="@+id/add_edit_title"
             android:layout_width="189dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Name" />
+            android:text="Please enter the title of exam" />
 
         <TextView
             android:layout_width="50dp"
@@ -71,11 +70,37 @@
             android:text="Subtitle" />
 
         <EditText
-            android:id="@+id/edit_age"
+            android:id="@+id/add_edit_subtitle"
             android:layout_width="189dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Name" />
+            android:text="Please enter subtitle of exmal" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="ID" />
+
+        <EditText
+            android:id="@+id/add_edit_id"
+            android:layout_width="189dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Please enter the ID" />
 
         <TextView
             android:layout_width="50dp"
@@ -97,37 +122,11 @@
             android:text="Time" />
 
         <EditText
-            android:id="@+id/edit_gender"
+            android:id="@+id/add_edit_time"
             android:layout_width="189dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Name" />
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="37dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Birthday:" />
-
-        <EditText
-            android:id="@+id/birthdayedit"
-            android:layout_width="189dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Edit" />
+            android:text="Please enter time limit of exam" />
 
         <TextView
             android:layout_width="50dp"
