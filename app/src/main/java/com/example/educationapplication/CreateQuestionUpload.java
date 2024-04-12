@@ -230,9 +230,6 @@ public class CreateQuestionUpload extends AppCompatActivity {
         });
 
     }
-    public void receiveValue(String value) {
-        System.out.println("Received value from Kotlin: " + value);
-    }
 }
 
 
