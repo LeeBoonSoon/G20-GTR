@@ -1,11 +1,13 @@
 package com.example.educationapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.style.UpdateLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,10 +19,13 @@ import android.widget.Toast;
 
 import com.google.firebase.Firebase;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.example.educationapplication.QuizModel;
 import com.example.educationapplication.QuestionModel;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
@@ -34,7 +39,7 @@ public class CreateQuestionUpload extends AppCompatActivity {
 
     DatabaseReference databaseRef;
     String Title, Subtitle, Time, ID, ValueA, ValueB, ValueC, ValueD, CorrectAnswer,Question;
-
+    Integer questionnumber = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,12 @@ public class CreateQuestionUpload extends AppCompatActivity {
         EditText AnswerD = findViewById(R.id.add_answerD);
         Spinner spinner = findViewById(R.id.addspinner);
 
+        title.setText("Input the Question");
+        AnswerA.setText("AnswerA");
+        AnswerB.setText("AnswerB");
+        AnswerC.setText("AnswerC");
+        AnswerD.setText("AnswerD");
+
         //*****************************************
         List<QuestionModel> questionList = new ArrayList<>();
 
@@ -71,9 +82,7 @@ public class CreateQuestionUpload extends AppCompatActivity {
         ValueD = "";
         CorrectAnswer = "";
 
-        //Database
-
-        //Get the question to into arrary
+        //Input Array
         clearbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +115,7 @@ public class CreateQuestionUpload extends AppCompatActivity {
             }
         });
 
+        //Upload database
         uploadbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,9 +141,32 @@ public class CreateQuestionUpload extends AppCompatActivity {
                         questionList
                 );
 
-                //Get number
-                databaseRef = FirebaseDatabase.getInstance().getReference("5");
-                databaseRef.setValue(quz);
+                //GET THE NUMBER OF QUESTION
+                databaseRef = FirebaseDatabase.getInstance().getReference("QuestionNumber");
+                databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Integer questionNumber = snapshot.getValue(Integer.class);
+                        if (questionNumber != null) {
+                            questionNumber++; // Increment the retrieved value
+                            Log.e("FirebaseExample", "Number: " + questionNumber);
+
+                            // Update the database with the incremented value
+                            DatabaseReference updatedRef = FirebaseDatabase.getInstance().getReference("QuestionNumber");
+                            updatedRef.setValue(questionNumber);
+
+                            // Assuming quz is the data you want to store
+                            DatabaseReference quzRef = FirebaseDatabase.getInstance().getReference(questionNumber.toString());
+                            quzRef.setValue(quz);
+                        } else {
+                            Log.e("FirebaseExample", "QuestionNumber value is null.");
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e("FirebaseExample", "Error: " + error.getMessage());
+                    }
+                });
             }
         });
 
@@ -168,6 +201,7 @@ public class CreateQuestionUpload extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
     }
 
 }
