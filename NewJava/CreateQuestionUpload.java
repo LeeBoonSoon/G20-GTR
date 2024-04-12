@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.style.UpdateLayout;
@@ -17,6 +18,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Firebase;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -26,11 +29,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.example.educationapplication.QuizModel;
 import com.example.educationapplication.QuestionModel;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class CreateQuestionUpload extends AppCompatActivity {
@@ -39,7 +48,6 @@ public class CreateQuestionUpload extends AppCompatActivity {
 
     DatabaseReference databaseRef;
     String Title, Subtitle, Time, ID, ValueA, ValueB, ValueC, ValueD, CorrectAnswer,Question;
-    Integer questionnumber = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,32 +149,51 @@ public class CreateQuestionUpload extends AppCompatActivity {
                         questionList
                 );
 
-                //GET THE NUMBER OF QUESTION
-                databaseRef = FirebaseDatabase.getInstance().getReference("QuestionNumber");
-                databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                //Database
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                DocumentReference docRef = db.collection("ASS").document("NxgdVKplB0xMUczI9iYB");
+
+                //Get question number from firestore
+                docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Integer questionNumber = snapshot.getValue(Integer.class);
-                        if (questionNumber != null) {
-                            questionNumber++; // Increment the retrieved value
-                            Log.e("FirebaseExample", "Number: " + questionNumber);
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            Long questionNumberLong = documentSnapshot.getLong("QuestionNumber");
+                            if (questionNumberLong != null) {
+                                int questionNumber = questionNumberLong.intValue();
 
-                            // Update the database with the incremented value
-                            DatabaseReference updatedRef = FirebaseDatabase.getInstance().getReference("QuestionNumber");
-                            updatedRef.setValue(questionNumber);
+                                //Update to real time
+                                DatabaseReference quzRef = FirebaseDatabase.getInstance().getReference(String.valueOf(questionNumber));
+                                quzRef.setValue(quz);
 
-                            // Assuming quz is the data you want to store
-                            DatabaseReference quzRef = FirebaseDatabase.getInstance().getReference(questionNumber.toString());
-                            quzRef.setValue(quz);
-                        } else {
-                            Log.e("FirebaseExample", "QuestionNumber value is null.");
+                                // Update the document with the new QuestionNumber
+                                int updatedQuestionNumber = questionNumber + 1;
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("QuestionNumber", updatedQuestionNumber);
+                                docRef.set(data, SetOptions.merge())
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d("Firestore", "Document updated successfully!");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.e("Firestore", "Error updating document", e);
+                                            }
+                                        });
+                            }
                         }
                     }
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Log.e("FirebaseExample", "Error: " + error.getMessage());
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("Firestore", "Error getting document", e);
                     }
                 });
+                Intent intent = new Intent(CreateQuestionUpload.this,MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -203,5 +230,9 @@ public class CreateQuestionUpload extends AppCompatActivity {
         });
 
     }
-
+    public void receiveValue(String value) {
+        System.out.println("Received value from Kotlin: " + value);
+    }
 }
+
+
