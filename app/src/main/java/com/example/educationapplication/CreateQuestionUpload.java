@@ -149,9 +149,7 @@ public class CreateQuestionUpload extends AppCompatActivity {
                         questionList
                 );
 
-                //Update
-
-
+                //Database
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 DocumentReference docRef = db.collection("ASS").document("NxgdVKplB0xMUczI9iYB");
 
@@ -194,7 +192,6 @@ public class CreateQuestionUpload extends AppCompatActivity {
                         Log.e("Firestore", "Error getting document", e);
                     }
                 });
-
                 Intent intent = new Intent(CreateQuestionUpload.this,MainActivity.class);
                 startActivity(intent);
             }
