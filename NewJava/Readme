@@ -1,0 +1,1 @@
+    implementation("com.google.firebase:firebase-firestore:23.0.3")
