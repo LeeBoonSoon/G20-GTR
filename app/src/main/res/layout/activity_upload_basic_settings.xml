@@ -28,7 +28,7 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="Create Question"/>
+            android:text="Create Question" />
     </LinearLayout>
 
     <LinearLayout
@@ -48,7 +48,7 @@
             android:layout_width="189dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Please enter the title of exam" />
+            android:hint="Please enter the title of exam" />
 
         <TextView
             android:layout_width="50dp"
@@ -74,7 +74,7 @@
             android:layout_width="189dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Please enter subtitle of exmal" />
+            android:hint="Please enter subtitle of exmal" />
 
         <TextView
             android:layout_width="50dp"
@@ -100,7 +100,7 @@
             android:layout_width="189dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Please enter the ID" />
+            android:hint="Please enter the ID" />
 
         <TextView
             android:layout_width="50dp"
@@ -126,7 +126,7 @@
             android:layout_width="189dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Please enter time limit of exam" />
+            android:hint="Please enter time limit of exam" />
 
         <TextView
             android:layout_width="50dp"
