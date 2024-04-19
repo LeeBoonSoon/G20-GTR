@@ -220,6 +220,10 @@ public class CreateQuestionUpload extends AppCompatActivity {
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
+                options[0] = AnswerA.getText().toString();
+                options[1] = AnswerB.getText().toString();
+                options[2] = AnswerC.getText().toString();
+                options[3] = AnswerD.getText().toString();
             }
         });
 
