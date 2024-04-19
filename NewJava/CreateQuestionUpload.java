@@ -68,12 +68,6 @@ public class CreateQuestionUpload extends AppCompatActivity {
         EditText AnswerD = findViewById(R.id.add_answerD);
         Spinner spinner = findViewById(R.id.addspinner);
 
-        title.setText("Input the Question");
-        AnswerA.setText("AnswerA");
-        AnswerB.setText("AnswerB");
-        AnswerC.setText("AnswerC");
-        AnswerD.setText("AnswerD");
-
         //*****************************************
         List<QuestionModel> questionList = new ArrayList<>();
 
@@ -115,11 +109,11 @@ public class CreateQuestionUpload extends AppCompatActivity {
                 ValueD = "";
                 CorrectAnswer = "";
 
-                title.setText("Input the Question");
-                AnswerA.setText("AnswerA");
-                AnswerB.setText("AnswerB");
-                AnswerC.setText("AnswerC");
-                AnswerD.setText("AnswerD");
+                title.setText("");
+                AnswerA.setText("");
+                AnswerB.setText("");
+                AnswerC.setText("");
+                AnswerD.setText("");
             }
         });
 
