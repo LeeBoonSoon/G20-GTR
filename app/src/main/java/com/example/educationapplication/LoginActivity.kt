@@ -34,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
         val registerLink = findViewById<TextView>(R.id.register_link)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        val adminButton = findViewById<TextView>(R.id.adminBtn)
 
         binding.loginBtn.setOnClickListener {
             val username = binding.username.text.toString().trim()
@@ -55,6 +56,11 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this, "Your message here", Toast.LENGTH_SHORT).show()
                     }
                 }
+        }
+
+        adminButton.setOnClickListener{
+            val intent = Intent(this@LoginActivity,AdminLoginActivity::class.java)
+            startActivity(intent)
         }
 
         registerLink.setOnClickListener {

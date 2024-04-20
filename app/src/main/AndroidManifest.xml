@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,15 @@
         android:theme="@style/Theme.EducationApplication"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateQuestion"
+            android:exported="false" />
+        <activity
+            android:name=".AdminMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
@@ -23,7 +33,7 @@
             android:label="@string/title_activity_create_question_upload"
             android:theme="@style/Theme.EducationApplication" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".UploadBasicSettings"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -36,7 +46,7 @@
             android:name=".QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".UploadBasicSettings"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
