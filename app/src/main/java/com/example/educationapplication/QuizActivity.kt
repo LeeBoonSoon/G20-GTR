@@ -53,11 +53,13 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener  {
             }
 
             override fun onFinish() {
-                //Finish the quiz
+                finishQuiz()
             }
 
         }.start()
     }
+
+
 
     private fun loadQuestion(){
         selectedAnswer = ""

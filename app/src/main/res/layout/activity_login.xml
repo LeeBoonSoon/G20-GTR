@@ -65,6 +65,7 @@
                 android:id="@+id/loginBtn"
                 android:text="Login"
                 android:textSize="18sp"
+                app:icon="@drawable/login_image"
                 android:textColor="@color/white"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/orange"
